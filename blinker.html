@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .wrapper {
+      width: 100vw;
+      height: 100vh;
+      background-color: #0d0121;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .blinkers {
+      margin: 10px;
+      width: 70px;
+      height: 70px;
+      border-radius: 20px;
+      background-color: white;
+    }
+
+    .on {
+      background-color: #f08902;
+    }
+  </style>
+  <body>
+    <div class="wrapper">
+      <div class="blinkers" id="b0"></div>
+      <div class="blinkers" id="b1"></div>
+      <div class="blinkers" id="b2"></div>
+      <div class="blinkers" id="b3"></div>
+      <div class="blinkers" id="b4"></div>
+      <div class="blinkers" id="b5"></div>
+    </div>
+
+    <script>
+      let blinkers = [];
+      for (let i = 0; i <= 5; i++) {
+        blinkers[i] = document.getElementById("b" + i);
+      }
+
+      function blink() {
+        setTimeout(() => {
+          blinkers[0].classList.toggle("on");
+        }, 100);
+        setTimeout(() => {
+          blinkers[1].classList.toggle("on");
+        }, 200);
+        setTimeout(() => {
+          blinkers[2].classList.toggle("on");
+        }, 300);
+        setTimeout(() => {
+          blinkers[3].classList.toggle("on");
+        }, 400);
+        setTimeout(() => {
+          blinkers[4].classList.toggle("on");
+        }, 400);
+        setTimeout(() => {
+          blinkers[5].classList.toggle("on");
+        }, 500);
+
+        setTimeout(() => {
+          blinkers.forEach((e) => {
+            e.classList.toggle("on");
+          });
+        }, 700);
+      }
+
+      setInterval(blink, 1000);
+    </script>
+  </body>
+</html>
