@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digital Clock</title>
+  </head>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Barlow:wght@700&display=swap");
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .main {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: "Barlow", sans-serif;
+    }
+    .clock {
+      font-size: 80px;
+    }
+    .t {
+      font-size: 40px;
+      margin: 40px;
+      font-weight: bold;
+    }
+  </style>
+  <body>
+    <div class="main">
+      <h1 class="clock" id="clock">00:00:00</h1>
+      <h1 class="day" id="day">Day</h1>
+      <p class="t">Have a wonderful day today.</p>
+    </div>
+  </body>
+  <script>
+    let days = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+
+    let months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+
+    let clock = document.getElementById("clock");
+    let day = document.getElementById("day");
+
+    let date = new Date();
+    let today = date.getDay();
+    let dayOfMonth = date.getDate();
+    let month = date.getMonth();
+    let year = date.getFullYear();
+    let meridian;
+
+    if (date.getHours() >= 12) {
+      meridian = "PM";
+    } else {
+      meridian = "AM";
+    }
+
+    day.innerText =
+      days[today] + ", " + dayOfMonth + " " + months[month] + " " + year;
+
+    setInterval(() => {
+      let date = new Date();
+      hours = date.getHours() % 12;
+      minutes = date.getMinutes();
+      seconds = date.getSeconds();
+      if (minutes < 10) {
+        minutes = "0" + minutes;
+      }
+      if (seconds < 10) {
+        seconds = "0" + seconds;
+      }
+      clock.innerText = hours + ":" + minutes + ":" + seconds + " " + meridian;
+    }, 1000);
+  </script>
+</html>
