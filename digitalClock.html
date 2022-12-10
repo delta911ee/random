@@ -20,21 +20,64 @@
       align-items: center;
       justify-content: center;
       font-family: "Barlow", sans-serif;
+      background-image: radial-gradient(circle, #7409e6, #351a96);
+      color: white;
     }
     .clock {
       font-size: 80px;
+      display: flex;
+      text-align: center;
     }
-    .t {
-      font-size: 40px;
-      margin: 40px;
-      font-weight: bold;
+    p {
+      transform: translateY(35px);
+    }
+    .hours,
+    .minutes,
+    .seconds,
+    .meridian {
+      width: 100px;
+      height: 100px;
+      border-radius: 20px;
+      background-color: #7b00ff;
+      text-align: center;
+      padding: 20px;
+      margin: 20px;
+      box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.1);
+      transition: 0.2s ease;
+      cursor: default;
+    }
+
+    .hours:hover,
+    .minutes:hover,
+    .seconds:hover,
+    .meridian:hover {
+      transform: scale(1.2);
+    }
+
+    .day {
+      margin: 20px;
+    }
+
+    @media screen and (max-width: 768px) {
+      .clock {
+        flex-direction: column;
+      }
+      p {
+        display: none;
+      }
     }
   </style>
   <body>
     <div class="main">
-      <h1 class="clock" id="clock">00:00:00</h1>
+      <div class="clock" id="clock">
+        <div class="hours">00</div>
+        <p>:</p>
+        <div class="minutes">00</div>
+        <p>:</p>
+        <div class="seconds">00</div>
+        <div class="meridian"></div>
+      </div>
       <h1 class="day" id="day">Day</h1>
-      <p class="t">Have a wonderful day today.</p>
     </div>
   </body>
   <script>
@@ -63,7 +106,10 @@
       "December",
     ];
 
-    let clock = document.getElementById("clock");
+    let clockHour = document.querySelector(".hours");
+    let clockMinute = document.querySelector(".minutes");
+    let clockSeconds = document.querySelector(".seconds");
+    let clockMeridian = document.querySelector(".meridian");
     let day = document.getElementById("day");
 
     let date = new Date();
@@ -84,16 +130,19 @@
 
     setInterval(() => {
       let date = new Date();
-      hours = date.getHours() % 12;
-      minutes = date.getMinutes();
-      seconds = date.getSeconds();
+      let hours = date.getHours() % 12;
+      let minutes = date.getMinutes();
+      let seconds = date.getSeconds();
       if (minutes < 10) {
         minutes = "0" + minutes;
       }
       if (seconds < 10) {
         seconds = "0" + seconds;
       }
-      clock.innerText = hours + ":" + minutes + ":" + seconds + " " + meridian;
+      clockHour.innerHTML = hours;
+      clockMinute.innerHTML = minutes;
+      clockSeconds.innerHTML = seconds;
+      clockMeridian.innerHTML = meridian;
     }, 1000);
   </script>
 </html>
