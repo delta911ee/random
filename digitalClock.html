@@ -7,7 +7,6 @@
     <title>Digital Clock</title>
   </head>
   <style>
-    @import url("https://fonts.googleapis.com/css2?family=Barlow:wght@700&display=swap");
     * {
       margin: 0;
       padding: 0;
@@ -19,7 +18,8 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-family: "Barlow", sans-serif;
+      font-family: "Bahnschrift", sans-serif;
+      font-weight: bold;
       background-image: radial-gradient(circle, #7409e6, #351a96);
       color: white;
     }
@@ -138,6 +138,9 @@
       }
       if (seconds < 10) {
         seconds = "0" + seconds;
+      }
+      if (hours == 0) {
+        hours = 12;
       }
       clockHour.innerHTML = hours;
       clockMinute.innerHTML = minutes;

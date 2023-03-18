@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Key Code Finder</title>
+  </head>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap");
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .main {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .code {
+      color: black;
+      font-size: 120px;
+      font-family: "Poppins", sans-serif;
+    }
+
+    .info {
+      font-family: "Poppins", sans-serif;
+      color: gray;
+      font-size: 25px;
+    }
+  </style>
+  <body>
+    <div class="main">
+      <h1 class="code">Key Code Finder</h1>
+      <p class="info">Press any key to get the keycode</p>
+    </div>
+  </body>
+  <script>
+    let keyCode = document.querySelector(".code");
+    window.addEventListener("keypress", (e) => {
+      if (e.keyCode != 32) {
+        keyCode.textContent = e.key + " : " + e.keyCode.toString();
+      } else {
+        keyCode.textContent = "Space : " + e.keyCode.toString();
+      }
+    });
+  </script>
+</html>
