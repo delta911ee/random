@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reverse speaker</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .main {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .text {
+      width: 70vw !important;
+      height: 40vh;
+      font-size: 25px;
+      font-family: "Segoe UI", sans-serif;
+      margin-bottom: 2vh;
+    }
+    .text:focus {
+      border: none;
+    }
+    .say {
+      width: 70vw;
+      height: 10vh;
+      border: none;
+      font-family: "Segoe UI", sans-serif;
+      font-size: 40px;
+      background-color: #440fda;
+      color: white;
+      transition: 0.2s ease;
+    }
+    .say:hover {
+      background-color: #30099b;
+    }
+  </style>
+  <body>
+    <div class="main">
+      <textarea class="text" placeholder="Enter your text here.."></textarea>
+      <button class="say">Say</button>
+    </div>
+  </body>
+  <script>
+    const synth = window.speechSynthesis;
+    let sayButton = document.querySelector(".say");
+    sayButton.addEventListener("click", () => {
+      let t = document.querySelector(".text").value;
+      let l = t.split("").reverse();
+      r = l.join("");
+      utter = new SpeechSynthesisUtterance(r);
+      synth.speak(utter);
+    });
+  </script>
+</html>
