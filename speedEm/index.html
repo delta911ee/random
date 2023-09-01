@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speedometer Emulator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="speedo">
+        <div class="speedoCont">
+            <div class="bar" id="bar"></div>
+            <div class="needle"></div>
+        </div>
+    </div>
+    <div class="meter">
+        <p class="speed" id="speed">0</p>
+        <p class="unit">Kmph</p>
+        <p class="warning hidden"> ⚠ Slow down</p>
+    </div>
+</body>
+
+<script>
+
+    let speed = document.getElementById("speed")
+    let bar = document.getElementById("bar")
+    let warning = document.querySelector(".warning")
+    let s = parseInt(speed.innerText)
+    let maxSpeed = 400
+    let warningAudio = new Audio("assets/warning.mp3")
+    warningAudio.loop = true;
+    
+    bar.style.width = "0%";
+
+    function checkState(number){
+        if(number < 120){
+            speed.style.color = "#45d996"
+            warningAudio.pause()
+            if(!warning.classList.contains("hidden")){warning.classList.add("hidden")}
+        }
+        else if(number > 120 && number < 300){
+            speed.style.color = "#f5aa14"
+            warningAudio.play()
+            warning.classList.remove("hidden")
+        }
+        else if(number > 300){
+            speed.style.color = "#e60b49"
+        }
+    }
+
+    window.addEventListener("keypress", (e)=>{
+
+        if(e.key == "W" || e.key == "w"){
+            if(window.interval){window.clearInterval(window.interval)}
+            if(e.repeat && s<maxSpeed){
+                s+=2;
+                bar.style.width = ((s/maxSpeed)*100).toString()+"%"
+                checkState(s)
+                speed.innerText = s.toString()
+            }
+        }
+
+        if(e.key == "S" || e.key == "s" || e.keyCode == 32){
+            if(e.repeat && s!=0){
+                s-=1;
+                bar.style.width = ((s/maxSpeed)*100).toString()+"%"
+                checkState(s)
+                speed.innerText = s.toString()
+            }
+        }
+    })
+
+    window.addEventListener("keyup", (e)=>{
+        if(e.key == "w" || e.key == "W"){
+            window.interval = setInterval(()=>{
+                if(s!=0){
+                    s-=1
+                    bar.style.width = ((s/maxSpeed)*100).toString()+"%"
+                    checkState(s)
+                    speed.innerText = s.toString()
+                }
+            },250)
+        }
+    })
+
+</script>
+</html>

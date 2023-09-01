@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: 'Racing Sans One', cursive;
+    font-size: 16px;
+}
+
+.speedo{
+    width: 100vw;
+    height: 30vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.speedoCont{
+    width: 70%;
+    height: 30%;
+    background-color: #a2a2a2;
+    transform: skew(-15deg);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 0px 10px 0px 10px;
+}
+
+.bar{
+    width: 0px;
+    height: 100%;
+    background-image: linear-gradient(90deg, rgb(45, 198, 160), rgb(239, 53, 53));
+    transition: 0.1s ease;
+    border-radius: 0px 10px 0px 10px;
+}
+
+.needle{
+    width: 2.5px;
+    height: 120%;
+    border-radius: 10px;
+    background-color: black;
+}
+
+.meter{
+    width: 100vw;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.speed{
+    font-size: 10rem;
+    color: #45d996;
+}
+
+.unit{
+    font-size: 2.5rem;
+}
+
+.warning{
+    font-size: 2.5rem;
+    animation: blink 1s ease-in-out infinite;
+}
+
+.hidden{
+    visibility: hidden;
+}
+
+@keyframes blink{
+    from,to{
+        opacity: 1;
+    }
+
+    50%{
+        opacity: 0;
+    }
+}

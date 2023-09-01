@@ -1,0 +1,65 @@
+.letters{
+    height: 70vh;
+    background-color: black;
+}
+
+.guessContainer{
+    height: 20vh;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: white;
+}
+
+.letters{
+    display: grid;
+    grid-template-columns: 100px 100px 100px 100px 100px 100px 100px 100px 100px;
+    place-content: center;
+}
+
+.letterBox{
+    width: 150px;
+    height: 150px;
+    font-size: 7rem;
+    text-align: center;
+    color: gray;
+}
+
+.guess{
+    width: 50vw;
+    height: 60px;
+    font-size: 2rem;
+    padding-inline: 10px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+}
+
+.win, .loose, .hint{
+    max-width: 600px;
+    height: fit-content;
+    width: fit-content;
+    padding: 20px;
+    border: none;
+    border-radius: 10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.win{
+    background-color: #7fffd4;
+}
+
+.loose{
+    background-color: #de4848;
+}
+
+.hint{
+    max-width: 600px;
+    width: fit-content;
+    height: fit-content;
+    background-color: antiquewhite;
+}
